@@ -74,6 +74,6 @@ app.get('/data/animals', (req, res) => {
 
 });
 
-app.listen(PORT, () => {
+app.listen(80, () => {
     console.log(`API server now on port ${PORT}!`);
 });
