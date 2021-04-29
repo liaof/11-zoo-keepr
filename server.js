@@ -1,7 +1,7 @@
 //import the express.js package
 const express = require ('express');
 
-const { animals } = require('/data/animals');
+const { animals } = require('./data/animals');
 
 
 //  process.eng.PORT is a Heroku environment variable
@@ -44,6 +44,7 @@ function filterByQuery(query, animalsArray) {
 
     //if there is a diet parameter in the url
     if (query.diet) {
+        // filter() returns true when the animal parameter matches our query paramter, which then adds said animal to the filtered list
         filteredResults = filteredResults.filter(animal => animal.diet === query.diet);
     }
     //if there is a species parameter in the url
@@ -56,6 +57,11 @@ function filterByQuery(query, animalsArray) {
     }
     // return the filtered results:
     return filteredResults;
+}
+
+function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
 }
 
 //first argument is a string that describes the route the client will have to fetch from
@@ -75,6 +81,16 @@ app.get('/api/animals', (req, res) => {
     res.json(results);
 
 });
+// root - /api/animals/
+// paramter name - id
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    if (result) {
+      res.json(result);
+    } else {
+      res.send(404);
+    }
+  });
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
