@@ -1,9 +1,11 @@
-const { animals } = require('/data/animals');
 //import the express.js package
 const express = require ('express');
 
+const { animals } = require('/data/animals');
+
+
 //  process.eng.PORT is a Heroku environment variable
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3003;
 //instantiate the server
 const app = express();
 
@@ -58,7 +60,7 @@ function filterByQuery(query, animalsArray) {
 
 //first argument is a string that describes the route the client will have to fetch from
 //second argument is the callback that executes everytime said route is accessed via .get
-app.get('/data/animals', (req, res) => {
+app.get('/api/animals', (req, res) => {
 
     let results = animals;
     console.log(req.query);
@@ -74,6 +76,6 @@ app.get('/data/animals', (req, res) => {
 
 });
 
-app.listen(80, () => {
+app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
