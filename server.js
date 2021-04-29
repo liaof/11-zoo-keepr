@@ -1,4 +1,4 @@
-const { animals } = require('./data/animals');
+const { animals } = require('/data/animals');
 //import the express.js package
 const express = require ('express');
 
