@@ -3,7 +3,7 @@ const { animals } = require('./data/animals');
 const express = require ('express');
 
 //  process.eng.PORT is a Heroku environment variable
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 //instantiate the server
 const app = express();
 
