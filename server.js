@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3003;
 //instantiate the server
 const app = express();
 
+//*******req is the request object, which is the URL in this case */
 //******  req.query is the portion of the URL after the '?'  *********
 
 //takes in req.query as an argument, and filters it, then returns the new filtered array
@@ -64,14 +65,18 @@ function findById(id, animalsArray) {
     return result;
 }
 
+
+// POST requests are used to send data to a server
+// GET requests are used to request data from a specified resource ie a server
+
 //first argument is a string that describes the route the client will have to fetch from
 //second argument is the callback that executes everytime said route is accessed via .get
-//  read about express routing
+//  *more info - read about express routing
 
-app.get('/api/animals', (req, res) => {
+app.get('/api/animals', (req, res) => {//request, response
 
     let results = animals;
-    console.log(req.query);
+    //console.log(req.query);
     if (req.query) {
         results = filterByQuery(req.query, results);
     }
@@ -94,6 +99,19 @@ app.get('/api/animals/:id', (req, res) => {
     }
   });
 
+// .post defines a route that listens to POST requests, rather than GET requests
+// it sends data from the server to the client
+app.post('/api/animals', (req, res) => {
+  // req.body is where our incoming content will be
+  // it is the data we are posting to the server
+  console.log(req.body);
+  //send the data back to the client
+  res.json(req.body);
+});
+
+
+
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
+
