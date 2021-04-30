@@ -66,6 +66,8 @@ function findById(id, animalsArray) {
 
 //first argument is a string that describes the route the client will have to fetch from
 //second argument is the callback that executes everytime said route is accessed via .get
+//  read about express routing
+
 app.get('/api/animals', (req, res) => {
 
     let results = animals;
