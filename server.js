@@ -22,6 +22,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+// provide a file path to the public folder, and instcut the server to make the folder into static resources; it has an absolute path
+app.use(express.static('public'));
 
 //*******req is the request object, which is the URL in this case */
 //******  req.query is the portion of the URL after the '?'  *********
@@ -170,6 +172,26 @@ app.post('/api/animals', (req, res) => {
     //send the data back to the client
     res.json(req.body);
   }
+});
+
+// this .get method responds with an HTML page to display in the browser
+app.get('/', (req, res) => {
+  // tells the server where to find the file we want to read and send to the client
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// for when the client makes a req for a route that doesn't exist
+// The * will act as a wildcard, meaning any route that wasn't previously defined will fall under this request
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 
