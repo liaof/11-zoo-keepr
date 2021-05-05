@@ -135,6 +135,58 @@
         "anxious"
       ],
       "id": "13"
+    },
+    {
+      "name": "Darlene",
+      "id": "jhgdja3ng2"
+    },
+    {
+      "name": "Darlene",
+      "id": "jhgdja3ng2"
+    },
+    {
+      "name": "Darlene",
+      "id": "jhgdja3ng2"
+    },
+    {
+      "name": "Darlene",
+      "id": "jhgdja3ng2"
+    },
+    {
+      "name": "dankduds",
+      "species": "lemur",
+      "diet": "folivore",
+      "personalityTraits": [
+        "zany"
+      ],
+      "id": "18"
+    },
+    {
+      "name": "swagmanse",
+      "species": "lemur",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "19"
+    },
+    {
+      "name": "swagmanse",
+      "species": "lemur",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "20"
+    },
+    {
+      "name": "dankdude69",
+      "species": "lemur",
+      "diet": "carnivore",
+      "personalityTraits": [
+        "anxious"
+      ],
+      "id": "21"
     }
   ]
 }

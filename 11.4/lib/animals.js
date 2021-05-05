@@ -1,8 +1,5 @@
-const express = require('express');
-const { animals } = require('./data/animals');
-
-const PORT = process.env.PORT || 3002;
-const app = express();
+const fs = require('fs');
+const path = require('path');
 
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
@@ -13,6 +10,7 @@ function filterByQuery(query, animalsArray) {
     } else {
       personalityTraitsArray = query.personalityTraits;
     }
+    console.log(personalityTraitsArray);
     personalityTraitsArray.forEach(trait => {
       filteredResults = filteredResults.filter(
         animal => animal.personalityTraits.indexOf(trait) !== -1
@@ -36,23 +34,36 @@ function findById(id, animalsArray) {
   return result;
 }
 
-app.get('/api/animals', (req, res) => {
-  let results = animals;
-  if (req.query) {
-    results = filterByQuery(req.query, results);
-  }
-  res.json(results);
-});
+function createNewAnimal(body, animalsArray) {
+  
+  const animal = body;
+  animalsArray.push(animal);
+  fs.writeFileSync(
+    path.join(__dirname, '../data/animals.json'),
+    JSON.stringify({ animalsArray }, null, 2)
+  );
+  return animal;
+}
 
-app.get('/api/animals/:id', (req, res) => {
-  const result = findById(req.params.id, animals);
-  if (result) {
-    res.json(result);
-  } else {
-    res.send(404);
+function validateAnimal(animal) {
+  if (!animal.name || typeof animal.name !== 'string') {
+    return false;
   }
-});
+  if (!animal.species || typeof animal.species !== 'string') {
+    return false;
+  }
+  if (!animal.diet || typeof animal.diet !== 'string') {
+    return false;
+  }
+  if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
+    return false;
+  }
+  return true;
+}
 
-app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}!`);
-});
+module.exports = {
+  filterByQuery,
+  findById,
+  createNewAnimal,
+  validateAnimal
+};

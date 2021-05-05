@@ -1,8 +1,6 @@
 const $animalForm = document.querySelector('#animal-form');
 const $zookeeperForm = document.querySelector('#zookeeper-form');
 
-// when we submit a new animal thru the form, we collect all input data and use fetch()
-// to POST to the data to the server
 const handleAnimalFormSubmit = event => {
   event.preventDefault();
 
@@ -29,8 +27,7 @@ const handleAnimalFormSubmit = event => {
   }
   const animalObject = { name, species, diet, personalityTraits };
 
-  // request is coming from the server - we don't have to spec the full URL
-  fetch('/api/animals', {
+  fetch('api/animals', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -47,8 +44,7 @@ const handleAnimalFormSubmit = event => {
     .then(postResponse => {
       console.log(postResponse);
       alert('Thank you for adding an animal!');
-  });
-
+    });
 };
 
 const handleZookeeperFormSubmit = event => {

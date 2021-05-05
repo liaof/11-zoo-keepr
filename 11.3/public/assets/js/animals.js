@@ -44,10 +44,6 @@ const getAnimals = (formData = {}) => {
     });
 };
 
-// This function gathers all of the form input data and packages it as an
-// object to send to the getanimals() function as the formData argument
-// Then the object formData will be passed through the Object.entries() method
-// to create query parameters
 const handleGetAnimalsSubmit = event => {
   event.preventDefault();
   const dietRadioHTML = $animalForm.querySelectorAll('[name="diet"]');
@@ -80,4 +76,3 @@ const handleGetAnimalsSubmit = event => {
 $animalForm.addEventListener('submit', handleGetAnimalsSubmit);
 
 getAnimals();
-
